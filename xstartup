@@ -1,0 +1,14 @@
+#!/bin/sh
+
+[ -r /etc/sysconfig/i18n ] && . /etc/sysconfig/i18n
+export LANG
+export SYSFONT
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+if [[ -f /opt/cxoffice/etc/license.sig ]]; then
+    sudo chown ${UID}:${GID} /opt/cxoffice/etc/license.sig
+fi
+if [[ -f /opt/cxoffice/etc/license.txt ]]; then
+    sudo chown ${UID}:${GID} /opt/cxoffice/etc/license.txt
+fi

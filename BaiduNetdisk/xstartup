@@ -1,0 +1,8 @@
+#!/bin/sh
+
+[ -r /etc/sysconfig/i18n ] && . /etc/sysconfig/i18n
+export LANG
+export SYSFONT
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
