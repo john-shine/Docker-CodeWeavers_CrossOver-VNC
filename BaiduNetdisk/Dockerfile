@@ -42,7 +42,7 @@ RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 RUN yum install -y --setopt=tsflags=nodocs kde-l10n-Chinese libXScrnSaver alsa-lib google-noto-sans-simplified-chinese-fonts && \
-    wget http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/baidunetdisk_linux_2.0.1.rpm -O /tmp/baidunetdisk_linux.rpm && \
+    wget http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/2.0.2/baidunetdisk_linux_2.0.2.rpm -O /tmp/baidunetdisk_linux.rpm && \
     rpm -ivh /tmp/baidunetdisk_linux.rpm && \
     yum clean all && rm -rf /var/cache/yum/* && \
     localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
@@ -60,6 +60,6 @@ RUN /bin/echo -e 'alias ll="ls -last"' >> ${HOME}/.bashrc
 RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
 
-RUN /bin/echo -e "baidunetdisk >> ~/.baidunetdisk.log" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "/opt/baidunetdisk/baidunetdisk >> ~/.baidunetdisk.log 2>&1" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "tail -f /dev/null" >> ${HOME}/.vnc/xstartup
 
