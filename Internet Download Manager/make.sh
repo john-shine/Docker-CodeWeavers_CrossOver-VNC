@@ -1,6 +1,6 @@
 #!/bin/sh
 
-version=$(cat $(pwd "$0")/VERSION)
+version=$(cat "$(pwd \"$0\")/VERSION")
 
 while getopts 'v:' flag; do
   case "${flag}" in
