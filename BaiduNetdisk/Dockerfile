@@ -29,10 +29,11 @@ RUN yum check-update -y ; \
     /bin/echo -e "\n${USER}        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers && \
     yum clean all && rm -rf /var/cache/yum/*
 
-RUN touch ${HOME}/.vnc/passwd ${HOME}/.Xauthority
+RUN touch ${HOME}/.vnc/passwd ${HOME}/.Xauthority /var/log/baidunetdisk.log
 
 RUN chown -R ${UID}:${GID} ${HOME} && \
-    chmod 775 ${HOME}/.vnc/xstartup && \
+    chown ${UID}:${GID} /var/log/baidunetdisk.log && \
+    chmod 755 ${HOME}/.vnc/xstartup && \
     chmod 600 ${HOME}/.vnc/passwd
 
 WORKDIR ${HOME}
@@ -60,6 +61,6 @@ RUN /bin/echo -e 'alias ll="ls -last"' >> ${HOME}/.bashrc
 RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
 
-RUN /bin/echo -e "/opt/baidunetdisk/baidunetdisk >> ~/.baidunetdisk.log 2>&1" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "tail -f /dev/null" >> ${HOME}/.vnc/xstartup
-
+RUN /bin/echo -e "while true; do" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    /opt/baidunetdisk/baidunetdisk >> /var/log/baidunetdisk.log 2>&1" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "done" >> ${HOME}/.vnc/xstartup
