@@ -68,6 +68,8 @@ RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fluxbox &"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "/opt/noVNC-1.1.0/utils/launch.sh --listen 6080 --vnc 127.0.0.1:5901 &"  >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "sudo mkdir -p /home/baidu/baidunetdiskdownload/"  >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "sudo chmod -R a=rwx /home/baidu/baidunetdiskdownload/"  >> ${HOME}/.vnc/xstartup
 
 RUN /bin/echo -e "while true; do" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "    /opt/baidunetdisk/baidunetdisk >> /var/log/baidunetdisk.log 2>&1" >> ${HOME}/.vnc/xstartup
