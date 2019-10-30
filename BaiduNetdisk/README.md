@@ -2,7 +2,7 @@
 
 docker hub的repo地址：https://hub.docker.com/r/johnshine/baidunetdisk-crossover-vnc/
 
-群晖NAS的福音来了，直接在docker中启动百度云客户端，通过VNC客户端远程管理，不需要再运行臃肿的虚拟机系统了；可配合(群晖套件)[https://github.com/john-shine/synology-baiduNetdisk-package]使用。
+群晖NAS的福音来了，直接在docker中启动百度云客户端，通过VNC客户端远程管理，不需要再运行臃肿的虚拟机系统了；可配合[群晖套件](https://github.com/john-shine/synology-baiduNetdisk-package)使用。
 
 ## 快速上手
 
