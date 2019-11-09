@@ -49,6 +49,9 @@ pull镜像到本地
 
 ## 更新历史
 
+## 1.9
++ 修复VNC密码设置无效的问题
+
 ## 1.8
 + 修复下载目录权限问题，务必绑定到container的/home/baidu/baidunetdiskdownload/目录
 
