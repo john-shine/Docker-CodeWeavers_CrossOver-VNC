@@ -1,8 +1,15 @@
 #!/bin/sh
-#
-if [[ -f ${HOME}/.vnc/passwd ]]; then
-    echo "${vnc_password}" | vncpasswd -f > ${HOME}/.vnc/passwd
+
+if [ -f "${HOME}/baidunetdiskdownload/.vnc/passwd.txt" ]; then
+    vnc_password=$(cat "${HOME}/baidunetdiskdownload/.vnc/passwd.txt")
 fi
+
+if [ -d "${HOME}/baidunetdiskdownload/.reset" ]; then
+    rm -rf ${HOME}/baidunetdisk/*
+    rm -rf "${HOME}/baidunetdiskdownload/.reset/"
+fi
+
+echo "${vnc_password}" | vncpasswd -f > ${HOME}/.vnc/passwd
 
 [ -z "${DISPLAY}" ] || /usr/bin/vncserver -kill ${DISPLAY}
 sudo rm -f /tmp/.X*-lock /tmp/.X11-unix/X*
