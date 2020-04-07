@@ -49,6 +49,11 @@ pull镜像到本地
 
 ## 更新历史
 
+## 2.1
++ 添加中文拼音输入法
++ 在容器内中~/baidunetdiskdownload/目录下添加.reset文件夹，重置百度云客户端设置
++ 在容器内中~/baidunetdiskdownload/目录下添加.vnc/passwd.txt文件，设置vnc密码
+
 ## 2.0
 + 自动获取最新版客户端链接来build
 
