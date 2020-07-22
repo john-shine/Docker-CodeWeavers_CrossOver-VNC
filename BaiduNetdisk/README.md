@@ -23,15 +23,15 @@ pull镜像到本地
 
 启动镜像，就会在5901端口开启vnc远程连接端口。第一个5901是VNC连接的端口，你可以改成其它数字，如果冲突的话
 
-`sudo docker run -d -p 5901:5901 johnshine/baidunetdisk-crossover-vnc:latest`
+`sudo docker run --privileged -d -p 5901:5901 johnshine/baidunetdisk-crossover-vnc:latest`
 
 或者，你也可以指定vnc远程连接的密码方式启动
 
-`sudo docker run -d -p 5901:5901 -e vnc_password=your_password johnshine/baidunetdisk-crossover-vnc:latest`
+`sudo docker run --privileged -d -p 5901:5901 -e vnc_password=your_password johnshine/baidunetdisk-crossover-vnc:latest`
 
 还可以绑定默认下载目录到host的某个目录，会自动创建一个
 
-`sudo docker run -d -p 5901:5901 -v /path/to/download/folder:/home/baidu/baidunetdiskdownload/ johnshine/baidunetdisk-crossover-vnc:latest`
+`sudo docker run --privileged -d -p 5901:5901 -v /path/to/download/folder:/home/baidu/baidunetdiskdownload/ johnshine/baidunetdisk-crossover-vnc:latest`
 
 <b>注意一定要绑定到/home/baidu/baidunetdiskdownload/这个目录，否则会因为权限导致出现无法下载的问题</b>
 
