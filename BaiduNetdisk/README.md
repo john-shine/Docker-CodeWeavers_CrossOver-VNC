@@ -19,23 +19,36 @@ docker hub的repo地址：https://hub.docker.com/r/johnshine/baidunetdisk-crosso
 
 pull镜像到本地
 
-`sudo docker pull johnshine/baidunetdisk-crossover-vnc:latest`
+`docker pull johnshine/baidunetdisk-crossover-vnc:latest`
 
 启动镜像，就会在5901端口开启vnc远程连接端口。第一个5901是VNC连接的端口，你可以改成其它数字，如果冲突的话
 
-`sudo docker run --privileged -d -p 5901:5901 johnshine/baidunetdisk-crossover-vnc:latest`
+`docker run --privileged -d -p 5901:5901 johnshine/baidunetdisk-crossover-vnc:latest`
 
 或者，你也可以指定vnc远程连接的密码方式启动
 
-`sudo docker run --privileged -d -p 5901:5901 -e vnc_password=your_password johnshine/baidunetdisk-crossover-vnc:latest`
+`docker run --privileged -d -p 5901:5901 -e vnc_password=<your_password> johnshine/baidunetdisk-crossover-vnc:latest`
 
 还可以绑定默认下载目录到host的某个目录，会自动创建一个
 
-`sudo docker run --privileged -d -p 5901:5901 -v /path/to/download/folder:/home/baidu/baidunetdiskdownload/ johnshine/baidunetdisk-crossover-vnc:latest`
+`docker run --privileged -d -p 5901:5901 -v /path/to/download/folder:/home/baidu/baidunetdiskdownload/ johnshine/baidunetdisk-crossover-vnc:latest`
 
 <b>注意一定要绑定到/home/baidu/baidunetdiskdownload/这个目录，否则会因为权限导致出现无法下载的问题</b>
 
-使用VNC客户端连接5901端口即可
+使用VNC客户端连接5901端口即可。
+
+在v3.3.2之后，默认下载目录变成了`baidu`，需要在设置里手动修改下载目录到`/home/baidu/baidunetdiskdownload/`。
+
+可以用以下命令创建`.config`目录，并保留之前的设置和登录状态：
+```
+# 创建并设置 .config 目录的权限
+mkdir -p /path/to/baidunetdisk_home/.config
+sudo chown systemd-network:root /path/to/baidunetdisk_home/.config
+sudo chmod 700 /path/to/baidunetdisk_home/.config
+
+# 启动docker，并mount .config和下载目录
+docker run --privileged --name baidunetdisk --rm -d -p 5901:5901 -e vnc_password=<your_password> -v /path/to/baidunetdisk_home/.config:/home/baidu/.config/ -v /path/to/download/folder:/home/baidu/baidunetdiskdownload/ johnshine/baidunetdisk-crossover-vnc:latest
+```
 
 ## VNC客户端推荐
 
