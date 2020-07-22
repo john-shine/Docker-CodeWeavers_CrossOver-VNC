@@ -48,11 +48,13 @@ ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-RUN yum install -y --setopt=tsflags=nodocs gtk3 kde-l10n-Chinese libXScrnSaver alsa-lib google-noto-sans-simplified-chinese-fonts && \
-    last_version=$(curl -s "http://pan.baidu.com/disk/cmsdata?do=client"|grep -i -o "http:[0-9a-z/\\\.\_-]*\.rpm"|sed 's/\\//g') && \
+RUN yum install -y --setopt=tsflags=nodocs gtk3 kde-l10n-Chinese libXScrnSaver alsa-lib google-noto-sans-simplified-chinese-fonts xdg-utils
+
+RUN last_version=$(curl -s "http://pan.baidu.com/disk/cmsdata?do=client"|grep -i -o "http:[0-9a-z/\\\.\_-]*\.rpm"|sed 's/\\//g') && \
     wget ${last_version} -O /tmp/baidunetdisk_linux.rpm && \
-    rpm -ivh /tmp/baidunetdisk_linux.rpm && \
-    yum clean all && rm -rf /var/cache/yum/* && rm -f /tmp/baidunetdisk_linux.rpm && \
+    rpm -ivh /tmp/baidunetdisk_linux.rpm
+
+RUN yum clean all && rm -rf /var/cache/yum/* && rm -f /tmp/baidunetdisk_linux.rpm && \
     localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
 
 ENV LC_ALL "zh_CN.UTF-8"  
