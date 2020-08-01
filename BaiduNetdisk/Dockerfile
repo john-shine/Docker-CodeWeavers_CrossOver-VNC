@@ -48,7 +48,7 @@ ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-RUN yum install -y --setopt=tsflags=nodocs gtk3 kde-l10n-Chinese libXScrnSaver alsa-lib google-noto-sans-simplified-chinese-fonts && \
+RUN yum install -y --setopt=tsflags=nodocs gtk3 kde-l10n-Chinese libXScrnSaver alsa-lib google-noto-sans-simplified-chinese-fonts xdg-utils && \
     last_version=$(curl -s "http://pan.baidu.com/disk/cmsdata?do=client"|grep -i -o "http:[0-9a-zA-Z/\\\.\_-]*\.rpm"|sed 's/\\//g') && \
     wget ${last_version} -O /tmp/baidunetdisk_linux.rpm && \
     rpm -ivh /tmp/baidunetdisk_linux.rpm && \
