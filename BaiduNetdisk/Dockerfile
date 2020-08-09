@@ -48,8 +48,8 @@ ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
-RUN yum install -y --setopt=tsflags=nodocs gtk3 kde-l10n-Chinese libXScrnSaver alsa-lib google-noto-sans-simplified-chinese-fonts && \
-    last_version=$(curl -s "http://pan.baidu.com/disk/cmsdata?do=client"|grep -i -o "http:[0-9a-z/\\\.\_]*\.rpm"|sed 's/\\//g') && \
+RUN yum install -y --setopt=tsflags=nodocs xdg-utils gtk3 kde-l10n-Chinese libXScrnSaver alsa-lib google-noto-sans-simplified-chinese-fonts && \
+    last_version=$(curl -s "http://pan.baidu.com/disk/cmsdata?do=client"|grep -i -o "http:[0-9a-z/\\\.\_\-]*\.rpm"|sed 's/\\//g') && \
     wget ${last_version} -O /tmp/baidunetdisk_linux.rpm && \
     rpm -ivh /tmp/baidunetdisk_linux.rpm && \
     yum clean all && rm -rf /var/cache/yum/* && rm -f /tmp/baidunetdisk_linux.rpm && \
@@ -78,11 +78,11 @@ RUN /bin/echo -e 'export XMODIFIERS="@im=fcitx"' >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "sleep 3"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fcitx"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo "sed -i ':a;N;\$!ba;s/      \[exec\] (xterm) {xterm}\n//' ~/.fluxbox/menu" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo "sed -i 's/\[exec\] (firefox) {}/\[exec\] (百度网盘客户端) {\/opt\/baidunetdisk\/baidunetdisk}/' ~/.fluxbox/menu" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo "sed -i 's/\[exec\] (firefox) {}/\[exec\] (百度网盘客户端) {\/opt\/baidunetdisk\/baidunetdisk --no-sandbox}/' ~/.fluxbox/menu" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "/opt/noVNC-1.1.0/utils/launch.sh --listen 6080 --vnc 127.0.0.1:5901 &"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "sudo mkdir -p /home/baidu/baidunetdiskdownload/"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "sudo chmod -R a=rwx /home/baidu/baidunetdiskdownload/"  >> ${HOME}/.vnc/xstartup
 
 RUN /bin/echo -e "while true; do" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    /opt/baidunetdisk/baidunetdisk >> /var/log/baidunetdisk.log 2>&1" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    /opt/baidunetdisk/baidunetdisk --no-sandbox >> /var/log/baidunetdisk.log 2>&1" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "done" >> ${HOME}/.vnc/xstartup
