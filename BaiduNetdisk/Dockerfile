@@ -20,9 +20,8 @@ RUN useradd -g ${GID} -u ${UID} -r -d ${HOME} -s /bin/bash ${USER}
 RUN echo "root:root" | chpasswd
 # set password of ${USER} to ${USER}
 RUN echo "${USER}:${USER}" | chpasswd
-RUN apt help
 
-RUN apt update -y && \
+RUN apt-get update -y && \
     apt-get install -y --no-install-recommends apt-utils sudo git curl wget ca-certificates python python-numpy fluxbox && \
     apt-get install -y --no-install-recommends tigervnc-standalone-server tigervnc-common && \
     /bin/echo -e "\n${USER}        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers && \
@@ -32,7 +31,7 @@ RUN apt update -y && \
     rm -rf /opt/noVNC-1.1.0/utils/websockify/.git /tmp/noVNC.tar.gz && \
     mv /opt/noVNC-1.1.0/vnc_lite.html /opt/noVNC-1.1.0/index.html && \
     sed -i 's/<title>noVNC<\/title>/<title>百度云网盘客户端<\/title>/g' /opt/noVNC-1.1.0/index.html && \
-    apt remove -y git && \
+    apt-get remove -y git-man git && \
     apt-get clean
 
 RUN touch ${HOME}/.vnc/passwd ${HOME}/.Xauthority /var/log/baidunetdisk.log
@@ -49,7 +48,7 @@ RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 RUN apt-get install -y --no-install-recommends dbus-x11 fcitx-module-dbus fcitx-ui-classic fcitx-googlepinyin locales && \
-    apt-get install -y --no-install-recommends libgtk-3-0 libnotify4 libnss3 libxss1 libatspi2.0-0 libappindicator3-1 libsecret-1-0 libgbm1 libasound2 fonts-wqy-microhei xdg-utils desktop-file-utils && \
+    apt-get install -y --no-install-recommends libxtst6 libgtk-3-0 libnotify4 libnss3 libxss1 libatspi2.0-0 libappindicator3-1 libsecret-1-0 libgbm1 libasound2 fonts-wqy-microhei xdg-utils desktop-file-utils && \
     last_version=$(curl -s "http://pan.baidu.com/disk/cmsdata?do=client"|grep -i -o "http:[0-9a-z/\\\.\_\-]*\.deb"|sed 's/\\//g') && \
     wget ${last_version} -O /tmp/baidunetdisk_linux.deb && \
     dpkg -i /tmp/baidunetdisk_linux.deb && \
