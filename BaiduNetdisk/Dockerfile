@@ -49,7 +49,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 RUN apt-get install -y --no-install-recommends dbus-x11 fcitx-module-dbus fcitx-ui-classic fcitx-googlepinyin locales && \
     apt-get install -y --no-install-recommends libxtst6 libgtk-3-0 libnotify4 libnss3 libxss1 libatspi2.0-0 libappindicator3-1 libsecret-1-0 libgbm1 libasound2 fonts-wqy-microhei xdg-utils desktop-file-utils && \
-    last_version="http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.3.2/baidunetdisk_3.3.2_amd64.deb" && \
+    last_version="http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb" && \
     wget ${last_version} -O /tmp/baidunetdisk_linux.deb && \
     dpkg -i /tmp/baidunetdisk_linux.deb && \
     apt-get clean && rm -f /tmp/baidunetdisk_linux.deb
@@ -57,6 +57,7 @@ RUN apt-get install -y --no-install-recommends dbus-x11 fcitx-module-dbus fcitx-
 RUN locale-gen zh_CN.UTF-8
 
 ENV LC_ALL "zh_CN.UTF-8"
+
 
 USER ${USER}
 WORKDIR ${HOME}
