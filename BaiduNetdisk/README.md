@@ -4,7 +4,7 @@ docker hub的repo地址：https://hub.docker.com/r/johnshine/baidunetdisk-crosso
 
 群晖NAS的福音来了，直接在docker中启动百度云客户端，通过VNC客户端远程管理，不需要再运行臃肿的虚拟机系统了；可配合[群晖套件](https://github.com/john-shine/synology-baiduNetdisk-package)使用。
 
-#### 请注意务必升级群晖至DSM6.2.x以上的版本，以下版本的DSM由于Linux内核为v3版本，无法运行最新版本的百度云linux客户端
+#### 请注意务必升级群晖至DSM6.2.x以上的版本，以下版本的DSM由于Linux内核为v3版本，无法运行最新版本的百度云linux客户端。目前在DSM6.2.3上测试一切正常运行。
 
 如果遇到退出客户端后再次打开客户端，停留在加载界面的进度条中，一直无法进入主界面的情况，需要删除用户信息文件，命令如下：
 
@@ -50,6 +50,9 @@ pull镜像到本地
 ![截图](https://raw.githubusercontent.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/master/BaiduNetdisk/screenshot/1.png)
 
 ## 更新历史
+
+## 4.0
++ 自动build百度云客户端为最新版本，但是V4版本linux内核才能支持
 
 ## 3.1
 + 还原百度云客户端版本到v3.0.1.2
