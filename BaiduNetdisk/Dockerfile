@@ -22,7 +22,7 @@ RUN echo "root:root" | chpasswd
 RUN echo "${USER}:${USER}" | chpasswd
 
 RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends apt-utils sudo git curl wget ca-certificates python python-numpy fluxbox && \
+    apt-get install -y --no-install-recommends apt-utils sudo git curl wget ca-certificates python3 python3-numpy fluxbox && \
     apt-get install -y --no-install-recommends tigervnc-standalone-server tigervnc-common && \
     /bin/echo -e "\n${USER}        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers && \
     wget https://github.com/novnc/noVNC/archive/v1.1.0.tar.gz -O /tmp/noVNC.tar.gz && \
@@ -49,7 +49,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 RUN apt-get install -y --no-install-recommends dbus-x11 fcitx-module-dbus fcitx-ui-classic fcitx-googlepinyin locales && \
     apt-get install -y --no-install-recommends libxtst6 libgtk-3-0 libnotify4 libnss3 libxss1 libatspi2.0-0 libappindicator3-1 libsecret-1-0 libgbm1 libasound2 fonts-wqy-microhei xdg-utils desktop-file-utils && \
-    last_version=$(curl -s "http://pan.baidu.com/disk/cmsdata?do=client"|grep -i -o "http:[0-9a-z/\\\.\_\-]*\.deb"|sed 's/\\//g') && \
+    last_version=$(curl -s "https://pan.baidu.com/disk/cmsdata?do=client"|grep -i -o "https:[0-9a-z/\\\.\_\-]*\.deb"|sed 's/\\//g') && \
     wget ${last_version} -O /tmp/baidunetdisk_linux.deb && \
     dpkg -i /tmp/baidunetdisk_linux.deb && \
     apt-get clean && rm -f /tmp/baidunetdisk_linux.deb
