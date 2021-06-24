@@ -39,6 +39,12 @@ pull镜像到本地
 
 使用VNC客户端连接5901端口即可
 
+## 更新
+
+支持novnc访问，运行下面这一行命令启动并绑定容器6080端口到主机6080端口，直接访问http://${服务器ip地址}:6080即可
+
+`sudo docker run -d -p 6080:6080 -v /path/to/download/folder:/home/baidu/baidunetdiskdownload/ johnshine/baidunetdisk-crossover-vnc:latest`
+
 ## VNC客户端推荐
 
 1. [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/windows/)
