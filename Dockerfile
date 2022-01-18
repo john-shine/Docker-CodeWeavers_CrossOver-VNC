@@ -68,7 +68,7 @@ RUN /bin/echo -e 'alias ll="ls -last"' >> ${HOME}/.bashrc
 # Always run the WM last!
 RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "/opt/noVNC-1.1.0/utils/launch.sh --listen 6080 --vnc 127.0.0.1:5901 &"  >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "/opt/noVNC-1.3.0/utils/launch.sh --listen 6080 --vnc 127.0.0.1:5901 &"  >> ${HOME}/.vnc/xstartup
 RUN cp ${HOME}/.vnc/xstartup ${HOME}/.vnc/xstartup_after
 RUN /bin/echo -e "${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup_after
 
