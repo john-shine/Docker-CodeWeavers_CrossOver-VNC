@@ -36,10 +36,10 @@ RUN yum check-update -y ; \
     export CFLAGS="-m32" && \
     export LDFLAGS="-m32" && \
     make && make install && \
-    wget https://github.com/novnc/noVNC/archive/v1.1.0.tar.gz -O /tmp/noVNC.tar.gz && \
+    wget https://github.com/novnc/noVNC/archive/v1.3.0.tar.gz -O /tmp/noVNC.tar.gz && \
     tar -zxvf /tmp/noVNC.tar.gz -C /opt && \
-    git clone https://github.com/novnc/websockify /opt/noVNC-1.1.0/utils/websockify && \
-    mv /opt/noVNC-1.1.0/vnc_lite.html /opt/noVNC-1.1.0/index.html && \
+    git clone https://github.com/novnc/websockify /opt/noVNC-1.3.0/utils/websockify && \
+    mv /opt/noVNC-1.3.0/vnc_lite.html /opt/noVNC-1.3.0/index.html && \
     yum remove -y git glibc-devel.i686 && \
     yum groupremove -y "Development Tools" && \
     rm -rf /tmp/libfaketime && rm -f /tmp/noVNC.tar.gz && \
