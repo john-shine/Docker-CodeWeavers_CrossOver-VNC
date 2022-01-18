@@ -25,7 +25,7 @@ RUN echo "${USER}:${USER}" | chpasswd
 
 RUN yum check-update -y ; \
     yum install -y --setopt=tsflags=nodocs tigervnc-server xorg-x11-server-utils xorg-x11-server-Xvfb xorg-x11-fonts-* motif xterm && \
-    yum install -y --setopt=tsflags=nodocs sudo which wget file zenity && \
+    yum install -y --setopt=tsflags=nodocs sudo which wget file zenity python3&& \
     yum install -y --setopt=tsflags=nodocs freetype.i686 freetype.x86_64 glibc.i686 glibc.x86_64 libICE.i686 libICE.x86_64 libSM.i686 libSM.x86_64 libX11.i686 libX11.x86_64 libXext.i686 libXext.x86_64 libgcc.i686 libgcc.x86_64 libpng.i686 libpng.x86_64 nss-mdns.i686 nss-mdns.x86_64 pygtk2 zlib.i686 zlib.x86_64 && \
     /bin/echo -e "\n${USER}        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers && \
     yum install -y git && \
@@ -68,7 +68,7 @@ RUN /bin/echo -e 'alias ll="ls -last"' >> ${HOME}/.bashrc
 # Always run the WM last!
 RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "/opt/noVNC-1.3.0/utils/launch.sh --listen 6080 --vnc 127.0.0.1:5901 &"  >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "/opt/noVNC-1.3.0/utils/novnc_proxy --listen 6080 --vnc 127.0.0.1:5901 &"  >> ${HOME}/.vnc/xstartup
 RUN cp ${HOME}/.vnc/xstartup ${HOME}/.vnc/xstartup_after
 RUN /bin/echo -e "${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup_after
 
