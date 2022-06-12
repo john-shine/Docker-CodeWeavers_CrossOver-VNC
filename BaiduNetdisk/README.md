@@ -113,7 +113,7 @@ pull镜像到本地
 ## 已知问题
 
 + 无法修改容器内的下载路径为其它路径
-+ 如果novnc界面全屏灰色，没有出现百度网盘客户端的界面的话，说明网盘客户端启动不了，就需要查看以下内核的版本。输入`uname -r`, 必须是4.0以上的内核才支持最新版本的客户端。目前发现DS3615xs的DSM 6.2.3-25426 Update 3的内核版本为3.10.105，最新版本镜像不支持，只能使用3.x及以下版本的镜像: `docker pull johnshine/baidunetdisk-crossover-vnc:3.1; docker tag johnshine/baidunetdisk-crossover-vnc:3.1 johnshine/baidunetdisk-crossover-vnc:latest`
++ 如果novnc界面全屏灰色，没有出现百度网盘客户端界面的话，说明网盘客户端无法启动，就需要查看以下内核的版本。输入`uname -r`, 必须是4.0以上的内核才支持最新版本的客户端。目前发现DS3615xs的DSM 6.2.3-25426 Update 3的内核版本为3.10.105，无法支持最新版本的镜像，只能使用3.x及以下版本的镜像: `docker pull johnshine/baidunetdisk-crossover-vnc:3.1; docker tag johnshine/baidunetdisk-crossover-vnc:3.1 johnshine/baidunetdisk-crossover-vnc:latest`
 + Use of uninitialized value $proto in socket at /usr/bin/vncserver line 3xx。perl库的问题，只是一个程序警告，问题不大。
 
 ## 已克服问题
