@@ -1,6 +1,6 @@
 # Using Ubuntu 18.04 base image and VNC
 
-FROM ubuntu:18.04
+FROM johnshine/crossover-vnc:latest
 MAINTAINER john.shine <mr.john.shine@gmail.com>
 LABEL io.openshift.expose-services="5901:tcp"
 
